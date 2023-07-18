@@ -10,7 +10,7 @@ namespace Fiorella.API.Controllers
         [HttpGet]
         public string Get()
         {
-            return "Hello";
+            return "Hello API";
         }
     }
 }
