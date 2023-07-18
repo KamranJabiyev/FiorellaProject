@@ -1,0 +1,12 @@
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\bin\Debug\net6.0\Fiorella.Domain.deps.json
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\bin\Debug\net6.0\Fiorella.Domain.dll
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\bin\Debug\net6.0\Fiorella.Domain.pdb
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.csproj.AssemblyReference.cache
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.AssemblyInfoInputs.cache
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.AssemblyInfo.cs
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.csproj.CoreCompileInputs.cache
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.dll
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\refint\Fiorella.Domain.dll
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\Fiorella.Domain.pdb
+C:\Users\kamran.jabiyev\Desktop\Fiorella\src\Core\Fiorella.Domain\obj\Debug\net6.0\ref\Fiorella.Domain.dll

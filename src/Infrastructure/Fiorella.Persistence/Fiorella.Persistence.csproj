@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Fiorella.Aplication\Fiorella.Aplication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementations\Services\" />
+    <Folder Include="Implementations\Repositories\" />
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
+</Project>
