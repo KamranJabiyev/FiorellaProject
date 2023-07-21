@@ -21,48 +21,20 @@ namespace Fiorella.API.Controllers
         [HttpGet("id")]
         public async Task<IActionResult> Get(int id)
         {
-            try
-            {
-                CategoryGetDto result=await _categoryService.GetByIdAsync(id);
-                return Ok(result);
-            }
-            catch (NotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-            }
+            CategoryGetDto result = await _categoryService.GetByIdAsync(id);
+            return Ok(result);
         }
         [HttpPost]
         public async Task<IActionResult> Post(CategoryCreateDto categoryCreateDto)
         {
-            try
-            {
-                await _categoryService.CreateAsync(categoryCreateDto);
-                return StatusCode((int)HttpStatusCode.Created);
-            }
-            catch (DuplicatedException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError,ex.Message);
-            }
+            await _categoryService.CreateAsync(categoryCreateDto);
+            return StatusCode((int)HttpStatusCode.Created);
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                List<CategoryGetDto>  result=await _categoryService.GetAllAsync();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-            }
+            List<CategoryGetDto> result = await _categoryService.GetAllAsync();
+            return Ok(result);
         }
     }
 }
