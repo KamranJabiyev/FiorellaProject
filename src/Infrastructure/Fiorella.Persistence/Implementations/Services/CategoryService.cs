@@ -26,7 +26,8 @@ public class CategoryService : ICategoryService
 
     public async Task CreateAsync(CategoryCreateDto categoryCreateDto)
     {
-        if (await _readRepository.GetByExpressionAsync(c => c.Name.ToLower() == categoryCreateDto.name.ToLower()) is not null)
+        var dbCategory = await _readRepository.GetByExpressionAsync(c => c.Name.ToLower().Equals(categoryCreateDto.name.ToLower()) );
+        if (dbCategory is not null)
         {
             throw new DuplicatedException("Duplicated Category Name");
         }
@@ -38,14 +39,12 @@ public class CategoryService : ICategoryService
 
     public Task<List<CategoryGetDto>> GetAllAsync()
     {
-        return _readRepository.GetAll()
-              .Select(category => new CategoryGetDto(category.Id, category.Name, category.Description))
-              .ToListAsync();
+        throw new NotImplementedException();
+
     }
 
-    public async Task<CategoryGetDto> GetByIdAsync(int id)
+    public  Task<CategoryGetDto> GetByIdAsync(int id)
     {
-        var category = await _readRepository.GetByIdAsync(id);
-        return _mapper.Map<CategoryGetDto>(category);
+       throw new NotImplementedException();
     }
 }
