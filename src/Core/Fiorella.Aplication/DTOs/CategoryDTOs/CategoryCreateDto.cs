@@ -1,3 +1,3 @@
 ﻿namespace Fiorella.Aplication.DTOs.CategoryDTOs;
 
-public record CategoryCreateDto(string name,string description);
+public record CategoryCreateDto(string name,string? description);

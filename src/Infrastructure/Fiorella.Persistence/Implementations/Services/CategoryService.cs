@@ -37,14 +37,17 @@ public class CategoryService : ICategoryService
         await _writeRepository.SaveChangeAsync();
     }
 
-    public Task<List<CategoryGetDto>> GetAllAsync()
+    public async Task<List<CategoryGetDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
-
+        var categories=await _readRepository.GetAll().ToListAsync();
+        List<CategoryGetDto> list=_mapper.Map<List<CategoryGetDto>>(categories);
+        return list;
     }
 
-    public  Task<CategoryGetDto> GetByIdAsync(int id)
+    public  async Task<CategoryGetDto> GetByIdAsync(int id)
     {
-       throw new NotImplementedException();
+       Category? categoryDb=await _readRepository.GetByIdAsync(id);
+       if (categoryDb is null) throw new NotFoundException("Category not found!!!");
+       return _mapper.Map<CategoryGetDto>(categoryDb);
     }
 }
