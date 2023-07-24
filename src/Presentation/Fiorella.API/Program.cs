@@ -2,6 +2,7 @@ using Fiorella.API.Middlewares;
 using Fiorella.Aplication.Abstraction.Repository;
 using Fiorella.Aplication.Abstraction.Services;
 using Fiorella.Aplication.Validators.CategoryValidators;
+using Fiorella.Domain.Entities;
 using Fiorella.Persistence;
 using Fiorella.Persistence.Contexts;
 using Fiorella.Persistence.Implementations.Repositories;
@@ -9,6 +10,7 @@ using Fiorella.Persistence.Implementations.Services;
 using Fiorella.Persistence.MapperProfiles;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -19,7 +21,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddPersistenceServices();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
