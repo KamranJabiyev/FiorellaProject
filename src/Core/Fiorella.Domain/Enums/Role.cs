@@ -3,5 +3,6 @@
 public enum Role
 {
     Member,
-    Admin
+    Admin,
+    SuperAdmin
 }
