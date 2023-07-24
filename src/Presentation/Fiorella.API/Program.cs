@@ -1,3 +1,4 @@
+using Fiorella.API.Middlewares;
 using Fiorella.Aplication.Abstraction.Repository;
 using Fiorella.Aplication.Abstraction.Services;
 using Fiorella.Aplication.Validators.CategoryValidators;
@@ -34,7 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCustomExceptionHandler();
 app.UseAuthorization();
 
 app.MapControllers();
