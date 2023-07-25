@@ -13,13 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2FD5EE9E-4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{075296A1-B0E1-4C07-9D0A-249C5177973B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.API", "src\Presentation\Fiorella.API\Fiorella.API.csproj", "{250A6CC2-1683-493F-B570-315F9C9E927C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiorella.API", "src\Presentation\Fiorella.API\Fiorella.API.csproj", "{250A6CC2-1683-493F-B570-315F9C9E927C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Domain", "src\Core\Fiorella.Domain\Fiorella.Domain.csproj", "{C38A457C-77A3-411F-A243-17F7DCC169BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiorella.Domain", "src\Core\Fiorella.Domain\Fiorella.Domain.csproj", "{C38A457C-77A3-411F-A243-17F7DCC169BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Persistence", "src\Infrastructure\Fiorella.Persistence\Fiorella.Persistence.csproj", "{36F7A65F-DA27-46B9-B0E5-6DA4A9F994C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiorella.Persistence", "src\Infrastructure\Fiorella.Persistence\Fiorella.Persistence.csproj", "{36F7A65F-DA27-46B9-B0E5-6DA4A9F994C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Aplication", "src\Core\Fiorella.Aplication\Fiorella.Aplication.csproj", "{C3538C87-D557-4154-932D-E20E3BDF8199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiorella.Aplication", "src\Core\Fiorella.Aplication\Fiorella.Aplication.csproj", "{C3538C87-D557-4154-932D-E20E3BDF8199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Infrastructure", "src\Infrastructure\Fiorella.Infrastructure\Fiorella.Infrastructure.csproj", "{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{C3538C87-D557-4154-932D-E20E3BDF8199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3538C87-D557-4154-932D-E20E3BDF8199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3538C87-D557-4154-932D-E20E3BDF8199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{C38A457C-77A3-411F-A243-17F7DCC169BB} = {2FD5EE9E-4279-4FEB-9B33-D0D460D7EDD6}
 		{36F7A65F-DA27-46B9-B0E5-6DA4A9F994C5} = {075296A1-B0E1-4C07-9D0A-249C5177973B}
 		{C3538C87-D557-4154-932D-E20E3BDF8199} = {2FD5EE9E-4279-4FEB-9B33-D0D460D7EDD6}
+		{D8575B7F-C6FB-4F9D-B1BB-A2F8E51F5D93} = {075296A1-B0E1-4C07-9D0A-249C5177973B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A26614E-8471-4F6B-A512-5476E2B5D6F3}
