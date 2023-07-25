@@ -37,6 +37,7 @@ public static class ServiceRegistration
         services.AddWriteRepositories();
 
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IAuthService, AuthService>();
     }
 
     private static void AddReadRepositories(this IServiceCollection services)

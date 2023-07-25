@@ -5,6 +5,10 @@ using Fiorella.Domain.Entities;
 using Fiorella.Domain.Enums;
 using Fiorella.Persistence.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace Fiorella.Persistence.Implementations.Services;
@@ -14,14 +18,19 @@ public class AuthService : IAuthService
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-
+    private readonly IConfiguration _configuration;
+    private readonly ITokenHandler _tokenHandler;
     public AuthService(UserManager<AppUser> userManager,
                        SignInManager<AppUser> signInManager,
-                       RoleManager<IdentityRole> roleManager)
+                       RoleManager<IdentityRole> roleManager,
+                       IConfiguration configuration,
+                       ITokenHandler tokenHandler)
     {
         _signInManager = signInManager;
         _roleManager = roleManager;
-        _userManager= userManager;
+        _userManager = userManager;
+        _configuration = configuration;
+        _tokenHandler = tokenHandler;
     }
 
     public async Task<TokenResponseDto> Login(SignInDto signInDto)
@@ -37,12 +46,13 @@ public class AuthService : IAuthService
         {
             throw new SignInFailerException("Invalid login!!!");
         }
-        //if (!appUser.IsActive)
-        //{
+        if (!appUser.IsActive)
+        {
+            throw new UserBlockedException("User blocked!!!");
+        }
 
-        //}
-
-        return new TokenResponseDto("", DateTime.Now);
+    
+        return await _tokenHandler.CreateAccessToken(120,appUser);
     }
 
     public async Task Register(RegisterDto registerDto)
