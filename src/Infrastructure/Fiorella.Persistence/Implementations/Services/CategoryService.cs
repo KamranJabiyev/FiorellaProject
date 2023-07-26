@@ -4,8 +4,9 @@ using Fiorella.Aplication.Abstraction.Services;
 using Fiorella.Aplication.DTOs.CategoryDTOs;
 using Fiorella.Domain.Entities;
 using Fiorella.Persistence.Exceptions;
-using Fiorella.Persistence.Implementations.Repositories;
+using Fiorella.Persistence.Resources;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Fiorella.Persistence.Implementations.Services;
 
@@ -14,14 +15,17 @@ public class CategoryService : ICategoryService
     private readonly ICategoryReadRepository _readRepository;
     private readonly ICategoryWriteRepository _writeRepository;
     private readonly IMapper _mapper;
+    private readonly IStringLocalizer<ErrorMessages> _localizer;
 
     public CategoryService(ICategoryReadRepository readRepository,
                            ICategoryWriteRepository writeRepository,
-                           IMapper mapper)
+                           IMapper mapper,
+                           IStringLocalizer<ErrorMessages> localizer)
     {
         _readRepository = readRepository;
         _writeRepository = writeRepository;
         _mapper = mapper;
+        _localizer = localizer;
     }
 
     public async Task CreateAsync(CategoryCreateDto categoryCreateDto)
@@ -47,7 +51,8 @@ public class CategoryService : ICategoryService
     public  async Task<CategoryGetDto> GetByIdAsync(int id)
     {
        Category? categoryDb=await _readRepository.GetByIdAsync(id);
-       if (categoryDb is null) throw new NotFoundException("Category not found!!!");
+        string message = _localizer.GetString("NotFoundExceptionMsg");
+       if (categoryDb is null) throw new NotFoundException(message);
        return _mapper.Map<CategoryGetDto>(categoryDb);
     }
 }
