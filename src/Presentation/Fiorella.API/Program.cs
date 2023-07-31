@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Fiorella.Infrastructure;
 using System.Globalization;
+using Fiorella.Infrastructure.Services.Storage.Local;
+using Fiorella.Infrastructure.Services.Storage.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,9 @@ localizationOptions.SetDefaultCulture("en-US");
 
 builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddStorage<LocalStorage>();
+//builder.Services.AddStorage<AzureStorage>();
+
 builder.Services.AddScoped<AppDbContextInitializer>();
 builder.Services.AddAuthentication(options =>
 {
