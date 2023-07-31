@@ -5,5 +5,5 @@ namespace Fiorella.Aplication.Abstraction.Services;
 
 public interface ITokenHandler
 {
-    public Task<TokenResponseDto> CreateAccessToken(int minutes,AppUser user);
+    public Task<TokenResponseDto> CreateAccessToken(int minutes,int refreshTokenMinutes,AppUser user);
 }

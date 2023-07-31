@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Fiorella.Infrastructure.Services.Token;
@@ -22,7 +23,7 @@ public class TokenHandler : ITokenHandler
         _configuration = configuration;
     }
 
-    public async Task<TokenResponseDto> CreateAccessToken(int minutes, AppUser appUser)
+    public async Task<TokenResponseDto> CreateAccessToken(int minutes,int refreshTokenMinutes, AppUser appUser)
     {
         List<Claim> claims = new()
         {
@@ -48,6 +49,15 @@ public class TokenHandler : ITokenHandler
             signingCredentials: credentials
         );
         var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-        return new TokenResponseDto(token,expireDate);
+        var refreshToken = GenerateRefreshToken();
+
+        return new TokenResponseDto(token,expireDate, DateTime.UtcNow.AddMinutes(refreshTokenMinutes), refreshToken);
+    }
+    private string GenerateRefreshToken()
+    {
+        byte[] bytes = new byte[64];
+        var randomNumber = RandomNumberGenerator.Create();
+        randomNumber.GetBytes(bytes);
+        return Convert.ToBase64String(bytes);
     }
 }

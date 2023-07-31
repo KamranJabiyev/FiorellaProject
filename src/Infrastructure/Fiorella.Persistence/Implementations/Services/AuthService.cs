@@ -3,8 +3,10 @@ using Fiorella.Aplication.DTOs.AuthDTOs;
 using Fiorella.Aplication.DTOs.ResponseDTOs;
 using Fiorella.Domain.Entities;
 using Fiorella.Domain.Enums;
+using Fiorella.Persistence.Contexts;
 using Fiorella.Persistence.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,19 +19,16 @@ public class AuthService : IAuthService
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly IConfiguration _configuration;
     private readonly ITokenHandler _tokenHandler;
+    private readonly AppDbContext _context;
     public AuthService(UserManager<AppUser> userManager,
                        SignInManager<AppUser> signInManager,
-                       RoleManager<IdentityRole> roleManager,
-                       IConfiguration configuration,
-                       ITokenHandler tokenHandler)
+                       ITokenHandler tokenHandler,
+                       AppDbContext context)
     {
         _signInManager = signInManager;
-        _roleManager = roleManager;
         _userManager = userManager;
-        _configuration = configuration;
+        _context = context;
         _tokenHandler = tokenHandler;
     }
 
@@ -50,9 +49,12 @@ public class AuthService : IAuthService
         {
             throw new UserBlockedException("User blocked!!!");
         }
-
-    
-        return await _tokenHandler.CreateAccessToken(120,appUser);
+        
+        var tokenResponse = await _tokenHandler.CreateAccessToken(2,3,appUser);
+        appUser.RefreshToken = tokenResponse.refreshToken;
+        appUser.RefreshTokenExpiration = tokenResponse.refreshTokenExpiration;
+        await _userManager.UpdateAsync(appUser);
+        return tokenResponse;
     }
 
     public async Task Register(RegisterDto registerDto)
@@ -84,5 +86,27 @@ public class AuthService : IAuthService
             }
             throw new RegistrationException(errorMessage.ToString());
         }
+    }
+
+    public async Task<TokenResponseDto> ValidateRefreshToken(string refreshToken)
+    {
+        if (refreshToken is null)
+        {
+            throw new ArgumentNullException("Refresh token does not exist");
+        }
+        AppUser? user = await _context.Users.Where(u => u.RefreshToken == refreshToken).FirstOrDefaultAsync();
+        if (user is null)
+        {
+            throw new NotFoundException("User does not exist");
+        }
+        if (user.RefreshTokenExpiration < DateTime.UtcNow)
+        {
+            throw new ArgumentNullException("Refresh token does not exist");
+        }
+        var tokenResponse = await _tokenHandler.CreateAccessToken(2, 3, user);
+        user.RefreshToken = tokenResponse.refreshToken;
+        user.RefreshTokenExpiration = tokenResponse.refreshTokenExpiration;
+        await _userManager.UpdateAsync(user);
+        return tokenResponse;
     }
 }
